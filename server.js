@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const morgan = require('morgan');
 const hbs = require('hbs');
-const session    = require("express-session");
+const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const cookieParser = require('cookie-parser');
 
@@ -57,10 +57,10 @@ app.use('/', require('./routes/auth.routes'));
 app.use('/feed', require('./routes/index.routes'));
 app.use('/profile', require('./routes/profile.routes'));
 app.use('/comment', require('./routes/comment.routes'));
-app.use('/error', require('./routes/error.routes'));
+// app.use('/error', require('./routes/error.routes'));
 
 app.all('*', (req, res, next) => {
-    res.redirect('/error');
+    res.render('error');
 });
 
 

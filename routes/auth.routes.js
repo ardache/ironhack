@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
 
         const {email, password} = req.body;
 
-        if(email === '' || password === '') {
+        if(!email || !password) {
             return res.render("index", {
                 message: "Todos los campos son obligatorios."
             });

@@ -57,7 +57,6 @@ app.use('/', require('./routes/auth.routes'));
 app.use('/feed', require('./routes/index.routes'));
 app.use('/profile', require('./routes/profile.routes'));
 app.use('/comment', require('./routes/comment.routes'));
-// app.use('/error', require('./routes/error.routes'));
 
 app.all('*', (req, res, next) => {
     res.render('error');

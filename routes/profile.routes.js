@@ -3,7 +3,16 @@ const router = require('express').Router();
 const User = require('../models/user.model.js');
 const Post = require('../models/post.model.js');
 
-router.get('/:userId', async (req, res) => {
+const {protect, authorize} = require('../middlewares/auth.middleware');
+
+
+/**
+ * @desc Profile page
+ * @route GET /profile/:userId
+ * @access Private
+ */
+
+router.get('/:userId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
     let {userId} = req.params;
 
@@ -19,10 +28,6 @@ router.get('/:userId', async (req, res) => {
     }
     
 });
-
-
-
-
 
 
 

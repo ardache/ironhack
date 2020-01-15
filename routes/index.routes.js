@@ -3,6 +3,7 @@ const router = require('express').Router();
 const Post = require('../models/post.model');
 const {protect, authorize} = require('../middlewares/auth.middleware');
 
+
 /**
  * @desc Feed page
  * @route GET /feed
@@ -23,6 +24,11 @@ router.get('/', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) =>
 });
 
 
+/**
+ * @desc Get a post
+ * @route Get /feed/post/:postId
+ * @access Private
+ */
 
 router.get('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
@@ -38,6 +44,11 @@ router.get('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (
 });
 
 
+/**
+ * @desc Create a post from feed
+ * @route POST /feed/post/:postId
+ * @access Private
+ */
 
 router.post('/', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
@@ -48,8 +59,13 @@ router.post('/', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) =
 });
 
 
+/**
+ * @desc Update a post
+ * @route POST /feed/postUpdate/:postId
+ * @access Private
+ */
 
-router.post('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
+router.post('/postUpdate/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
     try {
         
@@ -63,8 +79,13 @@ router.post('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async 
 });
 
 
+/**
+ * @desc Delete a post
+ * @route POST /feed/post/:postId
+ * @access Private
+ */
 
-router.post('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
+router.post('/postDelete/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
     try {
 

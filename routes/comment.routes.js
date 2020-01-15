@@ -4,9 +4,15 @@ const User = require('../models/user.model.js');
 const Post = require('../models/post.model.js');
 const Comment = require('../models/comment.model.js');
 
+const {protect, authorize} = require('../middlewares/auth.middleware');
 
+/**
+ * @desc Create a comment
+ * @route Post /comment/:postId
+ * @access Private
+ */
 
-router.post('/:postId', async (req, res) => {
+router.post('/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) => {
 
     try {
 

@@ -4,6 +4,12 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 
 
+/**
+ * @desc Index page
+ * @route GET /
+ * @access Public
+ */
+
 router.get('/', async (req, res) => {
 
     if (req.session.currentUser && req.session.currentUser !== undefined) {
@@ -14,6 +20,12 @@ router.get('/', async (req, res) => {
     
 });
 
+
+/**
+ * @desc Create an user
+ * @route POST /signup
+ * @access Public
+ */
 
 router.post('/signup', async (req, res) => {
 
@@ -48,6 +60,11 @@ router.post('/signup', async (req, res) => {
 });
 
 
+/**
+ * @desc Login into feed page
+ * @route POST /login
+ * @access Public
+ */
 
 router.post('/login', async (req, res) => {
 
@@ -85,6 +102,11 @@ router.post('/login', async (req, res) => {
 });
 
 
+/**
+ * @desc Logout
+ * @route POST /logout
+ * @access Public
+ */
 
 router.get("/logout", (req, res) => {
     req.session.destroy((err) => {

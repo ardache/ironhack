@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
             res.redirect("/feed");
         } else {
             res.render("index", {
-              errorMessage: "Los campos no coinciden."
+              message: "Los campos no coinciden."
             });
         }
         

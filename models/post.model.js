@@ -6,7 +6,8 @@ const Post = new Schema({
         trim: true,
         maxlength: 200
     },
-    img: String,
+    imgPath: String,
+    imgName: String,
     type: {
         type: String,
         enum: ['REGULAR', 'PHOTO'],

@@ -602,14 +602,14 @@
 													<img src="images/resources/admin2.jpg" alt="{{user.name}}">
 												</figure>
 												<div class="newpst-input">
-													<form method="post" action="/feed" enctype="multipart/form-data">
+													<form method="post" action="/feed/postWithPhoto" enctype="multipart/form-data">
 														<textarea rows="2" placeholder="¿En qué piensas?" name="content"></textarea>
 														<div class="attachments">
 															<ul>
 																<li>
 																	<i class="fa fa-image"></i>
 																	<label class="fileContainer">
-																		<input type="file" required>
+																		<input name="photo" type="file" required>
 																	</label>
 																</li>
 																<li>
@@ -637,7 +637,7 @@
 												</div>
 												<div class="post-meta">
 													{{#ifCond this.type "PHOTO" }}
-														<img src="../images/resources/user-post.jpg" alt="">
+														<img src="{{this.imgPath}}" alt="{{this.imgName}}">
 													{{/ifCond}}
 													<div class="we-video-info">
 														<p>{{this.content}}</p>
@@ -645,7 +645,7 @@
 															<li>
 																<span class="like" data-toggle="tooltip" title="like">
 																	<i class="ti-heart"></i>
-																	<ins>2.2k</ins>
+																	<ins>0</ins>
 																</span>
 															</li>
 														</ul>

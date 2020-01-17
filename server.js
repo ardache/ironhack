@@ -17,7 +17,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 
 
-// Helpers
+// UTILS
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 hbs.registerHelper('ifCond', function(v1, v2, options) {
@@ -40,10 +40,10 @@ app.use(cookieParser());
 
 app.use(session({
     secret: "1r0nhacker2019",
-    cookie: { maxAge: 7 * 24 * 60 * 60 },
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
-        ttl: 7 * 24 * 60 * 60
+        ttl: 24 * 60 * 60 * 1000
     })
 }));
 

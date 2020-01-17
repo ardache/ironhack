@@ -6,6 +6,7 @@ const Comment = require('../models/comment.model.js');
 
 const {protect, authorize} = require('../middlewares/auth.middleware');
 
+
 /**
  * @desc Create a comment
  * @route Post /comment/:postId

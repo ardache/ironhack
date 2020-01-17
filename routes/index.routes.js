@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const uploadCloud = require('../config/cloudinary');
+
 const Post = require('../models/post.model');
 const {protect, authorize} = require('../middlewares/auth.middleware');
 
@@ -46,7 +48,7 @@ router.get('/post/:postId', [protect, authorize('IRONHACKER', 'STAFF')], async (
 
 /**
  * @desc Create a post from feed
- * @route POST /feed/post/:postId
+ * @route POST /feed/
  * @access Private
  */
 
@@ -57,6 +59,37 @@ router.post('/', [protect, authorize('IRONHACKER', 'STAFF')], async (req, res) =
     res.redirect('/feed');
 
 });
+
+
+
+
+
+/**
+ * @desc Create a post from feed
+ * @route POST /feed/postWithPhoto
+ * @access Private
+ */
+
+router.post('/postWithPhoto', [protect, authorize('IRONHACKER', 'STAFF'), uploadCloud.single('photo')], async (req, res) => {
+
+    const {content} = req.body;
+    const imgPath = req.file.url;
+    const imgName = req.file.originalname;
+    let message;
+
+    // if(req.file.format !== 'png' || req.file.format !== 'jpg') {
+    //     message = 'El formato no es válido.'
+    //     return res.render('feed', {message})
+    // }
+    await Post.create({type: 'PHOTO', content, imgPath, imgName, author: req.session.currentUser});
+    res.redirect('/feed');
+
+});
+
+
+
+
+
 
 
 /**
